@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',  # приложение для поиска и обслуживания статических файлов
 
+    'debug_toolbar', # приложение - тулбар для отслеживания sql запросов прямо на сайте
+
     'main', # регистрируем основное приложение
     'goods',
 ]
@@ -55,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # для дебаг тулбара
 ]
 
 # указатель на url адреса нашего приложения
@@ -128,9 +132,16 @@ USE_TZ = True
 # префикс для url адреса статики
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # папка для статики в корне, путь указываем по схеме выше. общая статика, которая применима для всех приложений
-    ]
+
+# папка для статики в корне, путь указываем по схеме выше. общая статика, которая применима для всех приложений
+STATICFILES_DIRS = [BASE_DIR / 'static',]
+
+# также требуется для sql дебагера
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
