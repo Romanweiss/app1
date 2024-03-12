@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 # импорт библиотеки для удобной работы с путями расположения
-from pathlib import Path 
+from pathlib import Path
+
 
 # Путь, который ведёт к корневому каталогу нашего проекта - BASE_DIR
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  # приложение для поиска и обслуживания статических файлов
 
     'main', # регистрируем основное приложение
 ]
@@ -125,6 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 # префикс для url адреса статики
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # папка для статики в корне, путь указываем по схеме выше. общая статика, которая применима для всех приложений
+    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -9,14 +9,18 @@ from django.shortcuts import render
 
 def index(request):
     context = {
-        'title': 'Home',
-        'content': 'Главная страница магазина - HOME',
-        'list': ['first', 'second'],
-        'dict': {'first': 1},
-        'is_authenticated': False
+        'title': 'Home - Главная',
+        'content': 'Магазин мебели Home',
+        
     }
     return render(request, 'main/index.html', context)
 
 
 def about(request):
-    return HttpResponse("About Page")
+    context = {
+        'title': 'Home - О нас',
+        'content': 'О нас',
+        'text_on_page': 'Какой то пространный текст о том, что наш магазин - самый лучший'
+        
+    }
+    return render(request, 'main/about.html', context)
