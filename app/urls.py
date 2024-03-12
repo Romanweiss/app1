@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')), # namespace - для разграничения url адресов в шаблонах, 
     # тк часто одинаково называют шаблоны в разных приложениях
+    path('catalog', include('goods.urls', namespace='catalog')),
 ]
