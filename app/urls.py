@@ -1,4 +1,4 @@
-"""
+'''
 URL configuration for app project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,7 +13,7 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+'''
 
 
 from django.contrib import admin
@@ -25,13 +25,13 @@ from app import settings
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     # namespace - для разграничения url адресов в шаблонах, тк часто одинаково называют шаблоны в разных приложениях
-    path("", include("main.urls", namespace="main")),
-    path("catalog", include("goods.urls", namespace="catalog")),
+    path('', include('main.urls', namespace='main')),
+    path('catalog/', include('goods.urls', namespace='catalog')),
 ]
 
 # маршрут для sql дебагера и медиафайлов
 if settings.DEBUG:
-    urlpatterns += [path("__debug__/", include("debug_toolbar.urls"))]
+    urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

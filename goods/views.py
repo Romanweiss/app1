@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 # импорт модели для дальнейшей работы с ней
 from goods.models import Products
 
 
-def catalog(request):
+def catalog(request, category_slug):
 
-    # получаем информацию из бд в отдельный файл
-    goods = Products.objects.all()
+    if category_slug == 'all':
+        # получаем информацию из бд в отдельный файл
+        goods = Products.objects.all()
+    else:
+        goods = get_object_or_404(Products.objects.filter(category__slug=category_slug))
 
     context = {
         "title": "Home - каталог",
