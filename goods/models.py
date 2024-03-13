@@ -39,6 +39,7 @@ class Products(models.Model):
         db_table = "product"
         verbose_name = "продукт"  # отвечает на вопрос - кого? чего? в ед. числе
         verbose_name_plural = "Продукты"  # множественное число
+        ordering = ('id',) # сортировка
 
     # переопределяем метод, для адекватного отображения объектов в админке
     def __str__(self):
