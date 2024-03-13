@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 # импорт библиотеки для удобной работы с путями расположения
 from pathlib import Path
 
+from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL
+
 
 # Путь, который ведёт к корневому каталогу нашего проекта - BASE_DIR
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -136,12 +138,14 @@ STATIC_URL = 'static/'
 # папка для статики в корне, путь указываем по схеме выше. общая статика, которая применима для всех приложений
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 
+# название url префикса для media
+MEDIA_URL = 'media/'
+
+# здесь джанго будет искать медиа файлы
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # также требуется для sql дебагера
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
+INTERNAL_IPS = ["127.0.0.1",]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -12,7 +12,6 @@ class Categories(models.Model):
         verbose_name = "категорию"  # отвечает на вопрос - кого? чего? в ед. числе
         verbose_name_plural = "Категории"  # множественное число
 
-    
     # переопределяем метод, для адекватного отображения объектов в админке
     def __str__(self):
         return self.name
@@ -41,7 +40,17 @@ class Products(models.Model):
         verbose_name = "продукт"  # отвечает на вопрос - кого? чего? в ед. числе
         verbose_name_plural = "Продукты"  # множественное число
 
-
     # переопределяем метод, для адекватного отображения объектов в админке
-    def __str__(self):  
-        return f'{self.name} Количество - {self.quantity}'
+    def __str__(self):
+        return f"{self.name} Количество - {self.quantity}"
+
+    # метод для преобразования id
+    def display_id(self):
+        return f"11{self.id:05}"
+
+    # метод для расчёта цены на товар
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - self.price * self.discount / 100, 2)
+        
+        return self.price

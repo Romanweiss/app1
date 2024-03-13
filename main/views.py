@@ -12,13 +12,13 @@ from goods.models import Categories
 def index(request):
 
     # Получаем всё из нашей модели при помощи менеджера Objects
-    categories = Categories.objects.all()
+    # categories = Categories.objects.all()
 
 
     context = {
         'title': 'Home - Главная',
         'content': 'Магазин мебели Home',
-        'categories': categories
+        # 'categories': categories
         
     }
     return render(request, 'main/index.html', context)
