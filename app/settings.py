@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'main', # регистрируем основное приложение
     'goods',
+    'users',
 ]
 
 # промежуточные слои(программное обеспечение) отвечающие за безопасность, аутентификацию, обработку файлов куки итд
@@ -71,7 +72,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # для шаблонов, которые используются во всех приложениях
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

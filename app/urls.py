@@ -29,6 +29,7 @@ urlpatterns = [
     # namespace - для разграничения url адресов в шаблонах, тк часто одинаково называют шаблоны в разных приложениях
     path('', include('main.urls', namespace='main')),
     path('catalog/', include('goods.urls', namespace='catalog')),
+    path('user/', include('users.urls', namespace='user')),
 ]
 
 # маршрут для sql дебагера и медиафайлов
