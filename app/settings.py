@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',  # приложение для поиска и обслуживания статических файлов
+    'django.contrib.postgres',  # подключаем для поиска
 
     'debug_toolbar', # приложение - тулбар для отслеживания sql запросов прямо на сайте
 
