@@ -47,7 +47,7 @@ class Products(models.Model):
 
     # метод для преобразования id
     def display_id(self):
-        return f"11{self.id:05}"
+        return f"{self.id:05}"
 
     # метод для расчёта цены на товар
     def sell_price(self):
