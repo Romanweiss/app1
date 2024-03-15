@@ -162,3 +162,6 @@ INTERNAL_IPS = ["127.0.0.1",]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # автоматическая инкрементация для id
+
+# переопределение стандартной модели на нашу (расширение функционала - добавлен аватар)
+AUTH_USER_MODEL = 'users.User'
