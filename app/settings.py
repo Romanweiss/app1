@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 # импорт библиотеки для удобной работы с путями расположения
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import LOGIN_URL, MEDIA_ROOT, MEDIA_URL
 
 
 # Путь, который ведёт к корневому каталогу нашего проекта - BASE_DIR
@@ -165,3 +165,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # автоматическ
 
 # переопределение стандартной модели на нашу (расширение функционала - добавлен аватар)
 AUTH_USER_MODEL = 'users.User'
+
+# переопределение адреса страницы логина (изначально - accounts/login)
+LOGIN_URL = '/user/login/'
