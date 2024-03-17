@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
+from carts.models import Cart
 
 
 def login(request):
@@ -14,9 +15,16 @@ def login(request):
             username = request.POST["username"]
             password = request.POST["password"]
             user = auth.authenticate(username=username, password=password)
+
+            session_key = request.session.session_key
+
             if user:
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
+
+                if session_key:
+                    Cart.objects.filter(session_key=session_key).update(user=user)
+
 
                 redirect_page = request.POST.get('next', None)
 
@@ -36,21 +44,28 @@ def login(request):
 
 
 def registration(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
-            # Ниже код для того чтобы сразу после регистрации пользователь залогинился
+
+            session_key = request.session.session_key
+
             user = form.instance
             auth.login(request, user)
-            messages.success(request, f"{user.username}, Вы успешно зарегистрировались и вошли в аккаунт")
-            return HttpResponseRedirect(reverse("main:index"))
 
+            if session_key:
+                Cart.objects.filter(session_key=session_key).update(user=user)
+            messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
+            return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserRegistrationForm()
-
-    context = {"title": "Home - Регистрация", "form": form}
-    return render(request, "users/registration.html", context)
+    
+    context = {
+        'title': 'Home - Регистрация',
+        'form': form
+    }
+    return render(request, 'users/registration.html', context)
 
 
 @login_required
