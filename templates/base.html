@@ -9,7 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "deps/css/bootstrap/bootstrap.min.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+    
+
     <!-- Стиль footer-a для главной страницы -->
     {% block css %}
     {% endblock css %}
@@ -18,14 +21,18 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "deps/favicon/favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "deps/favicon/favicon-16x16.png" %}">
     <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <title>{{ title }}</title>
 </head>
 
-<body>
+<body class="jost-font">
     <header>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container">
-                <a class="navbar-brand" href="{% url "main:index" %}">Home</a>
+                <a class="navbar-brand" href="{% url "main:index" %}"><img src="{% static "deps/images/logo-home-transformed.png" %}" alt="Home""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +65,7 @@
                                     Мой профиль
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item  text-white" href="carts/cart.html">Корзина</a></li>
+                                    <li><a class="dropdown-item  text-white" href="{% url "user:users_cart" %}">Корзина</a></li>
                                     <li><a class="dropdown-item  text-white" href="{% url "user:profile" %}">Личный кабинет</a>
                                     </li>
                                     {% if user.is_admin or user.is_staff %}
@@ -82,7 +89,7 @@
     </header>
     <section>
         <div class="container">
-            <!-- Каталог и корзина с фиксированным расположением на странице -->
+            {% comment %} <!-- Каталог и корзина с фиксированным расположением на странице --> {% endcomment %}
             <div class="row mt-1 position-fixed z-3">
                 <!-- Каталог -->
                 <div class="dropdown mb-2">
@@ -99,7 +106,7 @@
                         {% endfor %}
 
                 </div>
-                <!-- Значек корзины, вызывает модальное окно -->
+                {% comment %} <!-- Значок корзины, вызывает модальное окно --> {% endcomment %}
                 {% block modal_cart %}{% endblock modal_cart %}
                 <!-- Закончилась разметка модального окна -->
             </div>
@@ -108,10 +115,10 @@
         <div class="container">
             <div class="row mt-1">
                 <div class="col-lg-2">
-                    <!-- Пустой блок на Ваше усмотрение -->
+                    {% comment %} <!-- Пустой блок на Ваше усмотрение --> {% endcomment %}
                 </div>
                 <div class="col-lg-10">
-                    <!-- Контент на странице -->
+                    {% comment %} <!-- Контент на странице --> {% endcomment %}
                     {% include "includes/notifications.html" %}
                     {% block content %}
                     {% endblock content %}

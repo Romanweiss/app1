@@ -101,8 +101,8 @@ DATABASES = {
 
         # - подключаем postgresql
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'store',
-        'USER': 'store',
+        'NAME': 'home',
+        'USER': 'home',
         'PASSWORD': '694520',
         'HOST': 'localhost',
         'PORT': '5432',

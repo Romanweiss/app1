@@ -52,10 +52,10 @@
     </div>
 
     {% if request.GET.q %}
-        <h3 class="mt-4">Результаты поиска по запросу {{ request.GET.q }}</h3>
+        <h3 class="mt-4" id="text_color">Результаты поиска по запросу {{ request.GET.q }}</h3>
     {% if not goods %}
         <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
-        <h2 class="mt-4">По запросу ничего не найдено</h2>
+        <h2 class="mt-4" id="text_color">По запросу ничего не найдено</h2>
     {% endif %}
     {% endif %}
     {% for product in goods  %}
@@ -144,9 +144,9 @@
 {% endblock content %}
 
 {% block footer %}
-<footer class="py-4 bg-dark">
+<footer class="py-4 bg-dark" id="footer_style__st">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Home Romanweib 2023</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Home Romanweib 2024</p>
     </div>
 </footer>
 {% endblock footer %}
